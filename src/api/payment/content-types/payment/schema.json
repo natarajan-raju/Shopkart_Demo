@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payments",
+  "info": {
+    "singularName": "payment",
+    "pluralName": "payments",
+    "displayName": "payment",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "paymentId": {
+      "type": "uid",
+      "required": true
+    },
+    "bank_ref_no": {
+      "type": "uid",
+      "required": true
+    },
+    "payment_mode": {
+      "type": "enumeration",
+      "enum": [
+        "Credit_card",
+        "Debit_card",
+        "EMI",
+        "Net_banking",
+        "Wallet",
+        "Other_card",
+        "UPI"
+      ],
+      "required": true
+    },
+    "payment_date": {
+      "type": "date",
+      "required": true
+    },
+    "payment_amount": {
+      "type": "decimal",
+      "default": 0,
+      "required": true
+    },
+    "order": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::order.order",
+      "inversedBy": "payment"
+    },
+    "payment_status": {
+      "type": "enumeration",
+      "enum": [
+        "success",
+        "failed",
+        "pending"
+      ],
+      "default": "pending"
+    }
+  }
+}
